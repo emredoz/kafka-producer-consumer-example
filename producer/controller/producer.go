@@ -1,6 +1,5 @@
 package controller
 
-import "C"
 import (
 	"kafka-producer-consumer-example/common/model"
 	"kafka-producer-consumer-example/producer/services"

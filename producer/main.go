@@ -51,11 +51,13 @@ func main() {
 	<-quit
 
 	_, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	if err := server.Shutdown(context.Background()); err != nil {
+		log.Print("Server Shutdown err: ", err)
+	}
 	defer cancel()
 }
 
 func newServer(router *gin.Engine, port int) *http.Server {
-
 	endPoint := fmt.Sprintf(":%d", port)
 	server := &http.Server{
 		Addr:           endPoint,

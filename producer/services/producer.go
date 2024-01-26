@@ -2,11 +2,12 @@ package service
 
 import (
 	"fmt"
-	"github.com/IBM/sarama"
-	"google.golang.org/protobuf/proto"
 	"kafka-producer-consumer-example/common/model"
 	"kafka-producer-consumer-example/common/pkg/gkafka"
 	"log"
+
+	"github.com/IBM/sarama"
+	"google.golang.org/protobuf/proto"
 )
 
 type ProducerService interface {
@@ -23,7 +24,7 @@ func NewProducer(client sarama.SyncProducer) ProducerService {
 func (p producerService) SendNotification(notification model.Notification) error {
 	data, err := proto.Marshal(&notification)
 	if err != nil {
-		log.Print("proto.Marshal err: ", err)
+		log.Print("proto marshal err: ", err)
 		return err
 	}
 	message := &sarama.ProducerMessage{
